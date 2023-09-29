@@ -25,6 +25,7 @@ public class SheetsServiceUtil {
 
         private static Sheets sheetsService;
         private static final String SPREADSHEET_ID = "1Tp10m32jJywD8_L2s2gqapcobvUOLxBpNyyevUQsAh0"; // ссылка на гуглтаблицу
+        private static final String SPREADSHEET_ID_2 = "1AaAZ5ysWJffUPWfD76JoB5SXEMpp-0LGnYOjaRwmR2w"; // ссылка на гуглтаблицу со всеми вакансиями
 
 // создает сервис для работы с гуглшитом
         public static void setup() throws GeneralSecurityException, IOException {
@@ -36,6 +37,14 @@ public class SheetsServiceUtil {
         ClearValuesResponse resultClear = sheetsService.spreadsheets().values().clear(SPREADSHEET_ID, "A2:FT",new ClearValuesRequest()).execute();
         UpdateValuesResponse result = sheetsService.spreadsheets().values()
                 .update(SPREADSHEET_ID, "A2", body.setValues(listOfVacantion))
+                .setValueInputOption("RAW")
+                .execute();
+    }
+    public void clearSheetAndWriteSheetInTableKriss(List<List<Object>> listOfVacantion) throws IOException {
+        ValueRange body = new ValueRange();
+        ClearValuesResponse resultClear = sheetsService.spreadsheets().values().clear(SPREADSHEET_ID_2, "A2:FT",new ClearValuesRequest()).execute();
+        UpdateValuesResponse result = sheetsService.spreadsheets().values()
+                .update(SPREADSHEET_ID_2, "A2", body.setValues(listOfVacantion))
                 .setValueInputOption("RAW")
                 .execute();
     }

@@ -26,7 +26,7 @@ import java.util.List;
 public class HttpClient {
     List<List<Object>> listOfVacantion = new ArrayList<>();
 
-    public void httpGenerationVacantion() throws IOException {
+    public void httpGenerationVacantion(String filter ) throws IOException {
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
@@ -57,8 +57,9 @@ public class HttpClient {
                 System.out.println(jwtToken);
 // Пост запрос к апи фриендворка, который возвращает JSON с вакансиями по фильтру
                 HttpPost request1 = new HttpPost("https://app.friend.work/api/Jobs/ByFilter");
+                System.out.println("Фильтрздесь " + filter);
 // Добавляет параметры к пост запросу согласно апи для нужного филтра
-                StringEntity stringEntity = new StringEntity("{\"Status\":1,\"FromDate\":\"2020-01-01\",\"ToDate\":\"2025-08-09\",\"Paging\":{\"page\":1,\"count\":100}}");
+                StringEntity stringEntity = new StringEntity(filter);
                 request1.setEntity(stringEntity);
 //доавляет в хедер тип запроса и токен авторизации
                 request1.addHeader("Content-Type", "application/json");

@@ -21,8 +21,11 @@ public class Main {
             try {
 
                 HttpClient httpClient = new HttpClient();
-                httpClient.httpGenerationVacantion();
+                httpClient.httpGenerationVacantion("{\"Status\":1,\"FromDate\":\"2030-06-06\",\"ToDate\":\"2044-08-09\",\"Paging\":{\"page\":1,\"count\":100}}");
                 sheetsServiceUtil.clearSheetAndWriteSheet(httpClient.listOfVacantion);
+                //httpClient.httpGenerationVacantion("{\"FromDate\":\"2023-01-01\",\"ToDate\":\"2025-08-09\",\"Paging\":{\"page\":1,\"count\":100}}");
+                //sheetsServiceUtil.clearSheetAndWriteSheetInTableKriss(httpClient.listOfVacantion);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

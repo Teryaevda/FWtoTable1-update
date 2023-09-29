@@ -147,8 +147,10 @@ public class Stack implements Parametrs {
         MAP_STACK.put(4158,"node.JS");
         MAP_STACK.put(4192,"SQL");
         MAP_STACK.put(4191,"Angular");
-
-
+        MAP_STACK.put(4254,"Delivery Manager");
+        MAP_STACK.put(4253,"ML (Machine Learning)");
+        MAP_STACK.put(4255,"Product manager");
+        MAP_STACK.put(4256,"OLAP");
 
     }
     public static String getParametrs(Integer numOfCategory){
