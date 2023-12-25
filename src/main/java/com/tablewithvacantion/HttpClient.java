@@ -46,7 +46,7 @@ public class HttpClient {
                 if (entity != null) {
                     // возвращаем строку
                     jwt = EntityUtils.toString(entity);
-                    System.out.println(jwt);
+                    //System.out.println(jwt);
                 }
 //парсим jwt через json
                 Object obj = new JSONParser().parse(jwt);
@@ -54,10 +54,10 @@ public class HttpClient {
                 JSONObject jo = (JSONObject) obj;
 // Достаём токен
                 String jwtToken = (String) jo.get("jwtToken");
-                System.out.println(jwtToken);
+               // System.out.println(jwtToken);
 // Пост запрос к апи фриендворка, который возвращает JSON с вакансиями по фильтру
                 HttpPost request1 = new HttpPost("https://app.friend.work/api/Jobs/ByFilter");
-                System.out.println("Фильтрздесь " + filter);
+                //System.out.println("Фильтрздесь " + filter);
 // Добавляет параметры к пост запросу согласно апи для нужного филтра
                 StringEntity stringEntity = new StringEntity(filter);
                 request1.setEntity(stringEntity);
@@ -77,7 +77,7 @@ public class HttpClient {
                 strJson = EntityUtils.toString(entity1);
 
                 Object obj1 = new JSONParser().parse(strJson);
-                System.out.println(obj1);
+                //System.out.println(obj1);
 // Кастим obj в JSONObject
                 JSONObject jo1 = (JSONObject) obj1;
 
@@ -95,50 +95,50 @@ public class HttpClient {
                     List<Object> listOfAllFieldVacantion = new ArrayList<>();
                     JSONObject jsonObjectForItemItr = (JSONObject) itemItr.next();
                     vacantion.setNameOfVacantion(jsonObjectForItemItr.get("name"));
-                    System.out.println("- название: "+ vacantion.getNameOfVacantion());
+                    //System.out.println("- название: "+ vacantion.getNameOfVacantion());
                     vacantion.setIdVacantion(jsonObjectForItemItr.get("jobId"));
-                    System.out.println("- ID: " + vacantion.getIdVacantion());
+                   // System.out.println("- ID: " + vacantion.getIdVacantion());
                     vacantion.setDescriptionOfVacantion(jsonObjectForItemItr.get("description"));
-                    System.out.println("- описание: " + vacantion.getDescriptionOfVacantion());
+                    //System.out.println("- описание: " + vacantion.getDescriptionOfVacantion());
                     vacantion.setCommentToVacantion(jsonObjectForItemItr.get("comment"));
-                    System.out.println("- комментарии: " + vacantion.getCommentToVacantion());
+                    //System.out.println("- комментарии: " + vacantion.getCommentToVacantion());
                     vacantion.setCategoryOfVacanion(jsonObjectForItemItr.get("jobTypeId"));
-                    System.out.println("- Категория: " + vacantion.getCategoryOfVacanion());
+                    //System.out.println("- Категория: " + vacantion.getCategoryOfVacanion());
                     JSONArray jsonArrayCustomFieldsValues = (JSONArray) jsonObjectForItemItr.get("customFieldsValues");
                     Iterator customFieldsValuesItr = jsonArrayCustomFieldsValues.iterator();
                     while (customFieldsValuesItr.hasNext()){
                         JSONObject jsonObjectForCustomFieldsValuesItr = (JSONObject) customFieldsValuesItr.next();
                         if (jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Project")){
                             vacantion.setProject(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Проект: " + vacantion.getProject());
+                            //System.out.println("- Проект: " + vacantion.getProject());
                         } else if (jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Requirements")){
                             vacantion.setRequirementsToVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Требования: " + vacantion.getRequirementsToVacantion());
+                           // System.out.println("- Требования: " + vacantion.getRequirementsToVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Role1111")){
                             vacantion.setStackOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Стек: " + vacantion.getStackOfVacantion());
+                           // System.out.println("- Стек: " + vacantion.getStackOfVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Grades")) {
                             vacantion.setGradeOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Грейд: " + vacantion.getGradeOfVacantion());
+                           // System.out.println("- Грейд: " + vacantion.getGradeOfVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Exp")) {
                             vacantion.setExpirienceOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Опыт: " + vacantion.getExpirienceOfVacantion());
+                           // System.out.println("- Опыт: " + vacantion.getExpirienceOfVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Address")) {
                             vacantion.setAddressOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Адресс: " + vacantion.getAddressOfVacantion());
+                           // System.out.println("- Адресс: " + vacantion.getAddressOfVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Format")) {
                             vacantion.setWorkFormatOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Формат работы: " + vacantion.getWorkFormatOfVacantion());
+                            //System.out.println("- Формат работы: " + vacantion.getWorkFormatOfVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Resource_manager")) {
-                            System.out.println("- номер Ресурсного менеджера: " + jsonObjectForCustomFieldsValuesItr.get("value"));
+                            //System.out.println("- номер Ресурсного менеджера: " + jsonObjectForCustomFieldsValuesItr.get("value"));
                             vacantion.setResourceManagerOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Ресурсный менеджер: " + vacantion.getResourceManagerOfVacantion());
+                          //  System.out.println("- Ресурсный менеджер: " + vacantion.getResourceManagerOfVacantion());
                         } else if(jsonObjectForCustomFieldsValuesItr.get("systemName").equals("TeamForce_Search_Geography")) {
                             vacantion.setGeographyOfVacantion(jsonObjectForCustomFieldsValuesItr.get("value"));
-                            System.out.println("- Локация: " + vacantion.getGeographyOfVacantion());
+                           // System.out.println("- Локация: " + vacantion.getGeographyOfVacantion());
                         }
                     }
-                    System.out.println("----------------------------------------------------------------------");
+                    //System.out.println("----------------------------------------------------------------------");
                     listOfAllFieldVacantion.add(vacantion.getIdVacantion());
                     listOfAllFieldVacantion.add(vacantion.getCategoryOfVacanion());
                     listOfAllFieldVacantion.add(vacantion.getStackOfVacantion());
@@ -153,8 +153,8 @@ public class HttpClient {
                     listOfAllFieldVacantion.add(vacantion.getResourceManagerOfVacantion());
 
                     listOfVacantion.add(listOfAllFieldVacantion);
-                    System.out.println("Добавлена вакансия:********************************************** ");
-                    System.out.println("Добавлеие закончено***********************************************");
+                    //System.out.println("Добавлена вакансия:********************************************** ");
+                    //System.out.println("Добавлеие закончено***********************************************");
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
